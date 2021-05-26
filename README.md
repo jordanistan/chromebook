@@ -53,6 +53,11 @@ Select “Shutdown Linux (Beta)”
 Restart terminal
 Run docker run hello-world to test out the installation
 
+# Installing Vs Code
+cd /tmp
+wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+sudo dpkg -i discord.deb
+
 # Install Zsh
 sudo apt install zsh -y
 # Install Oh My Zsh
