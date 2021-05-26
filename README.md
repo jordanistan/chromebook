@@ -19,10 +19,9 @@ Install Docker
 Install docker the normal way
 
 # Update debian
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update -y && sudo apt-get upgrade
 
-sudo apt-get install \
+sudo apt-get install -y \
      apt-transport-https \
      ca-certificates \
      curl \
@@ -39,37 +38,38 @@ sudo add-apt-repository \
    stable"
 
 # Update and add docker-ce
-sudo apt-get update
-sudo apt-get install docker-ce
+sudo apt-get update -y && sudo apt-get install docker-ce -y
 
 # Install docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" \
   -o /usr/local/bin/docker-compose
 
 # Add yourself to the docker group if you aren't already
-sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo groupadd docker && sudo usermod -aG docker $USER
 Now you may need to shutdown the linux installation to make sure that your user is in the docker group.
 
 Alt-click on the terminal icon in the dock
 Select “Shutdown Linux (Beta)”
 Restart terminal
 Run docker run hello-world to test out the installation
-Installing atom
-cd /tmp
-sudo apt-get install wget
-wget https://atom.io/download/deb
-mv deb atom.deb
-sudo apt install ./atom.deb
-Test out the installation using atom.
 
+# Install Zsh
+sudo apt install zsh -y
+# Install Oh My Zsh
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sh install.sh
+
+# Unattended Install Oh My Zsh
+If you're running the Oh My Zsh install script as part of an automated install, you can pass the flag --unattended to the install.sh script. This will have the effect of not trying to change the default shell, and also won't run zsh when the installation has finished.
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/inst
 
 Installing go
 cd /tmp
 wget https://dl.google.com/go/go1.12.1.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.12.1.linux-amd64.tar.gz
-echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.profile
-source ~/.profile
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.zshrc
+source ~/.zshrc
 Test out using go version
 
 Installing Vscode
@@ -81,8 +81,7 @@ curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microso
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Install Visual Studio Code on your Debian based system.
-sudo apt-get update
-sudo apt-get install code
+sudo apt-get update -y && sudo apt-get install code -y
 
 Installing Google Cloud CLI
 # Create environment variable for correct distribution
@@ -95,7 +94,7 @@ echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee 
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
 # Update the package list and install the Cloud SDK
-sudo apt-get update && sudo apt-get install google-cloud-sdk
+sudo apt-get update -y && sudo apt-get install google-cloud-sdk -y
 Test out using gcloud auth login
 
 
